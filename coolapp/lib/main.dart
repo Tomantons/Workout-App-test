@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:coolapp/screens/powerlifting_details.dart';
+import 'package:coolapp/screens/back_squat.dart';
+import 'package:coolapp/screens/deadlift.dart';
+import 'package:coolapp/screens/bench_press.dart';
 
 void main() {
   runApp(MyApp());
@@ -114,14 +118,44 @@ class _MyAppState extends State<MyApp> {
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => WeekMenu(
-                          weeks: workouts[index].weeks,
-                          maxSquat: maxSquat,
-                          maxBenchPress: maxBenchPress,
-                          maxDeadlift: maxDeadlift,
-                        ),
-                      ));
+                      // Navigate to the corresponding workout details screen
+                      if (index == 0) {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => PowerliftingDetails(
+                            weeks: workouts[index].weeks,
+                            maxSquat: maxSquat,
+                            maxBenchPress: maxBenchPress,
+                            maxDeadlift: maxDeadlift,
+                          ),
+                        ));
+                      } else if (index == 1) {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => BackSquatDetails(
+                            weeks: workouts[index].weeks,
+                            maxSquat: maxSquat,
+                            maxBenchPress: maxBenchPress,
+                            maxDeadlift: maxDeadlift,
+                          ),
+                        ));
+                      } else if (index == 2) {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => BenchPressDetails(
+                            weeks: workouts[index].weeks,
+                            maxSquat: maxSquat,
+                            maxBenchPress: maxBenchPress,
+                            maxDeadlift: maxDeadlift,
+                          ),
+                        ));
+                      } else if (index == 3) {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => DeadliftDetails(
+                            weeks: workouts[index].weeks,
+                            maxSquat: maxSquat,
+                            maxBenchPress: maxBenchPress,
+                            maxDeadlift: maxDeadlift,
+                          ),
+                        ));
+                      }
                     },
                     child: WorkoutTile(workout: workouts[index]),
                   );
@@ -153,48 +187,6 @@ class WorkoutTile extends StatelessWidget {
           SizedBox(height: 5.0),
           Text(workout.description, style: TextStyle(fontSize: 16.0)),
         ],
-      ),
-    );
-  }
-}
-
-class WeekMenu extends StatelessWidget {
-  final List<String> weeks;
-  final int maxSquat;
-  final int maxBenchPress;
-  final int maxDeadlift;
-
-  WeekMenu(
-      {required this.weeks,
-      required this.maxSquat,
-      required this.maxBenchPress,
-      required this.maxDeadlift});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Weeks'),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            ListView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: weeks.length,
-              itemBuilder: (BuildContext context, int index) {
-                // Generate workout details based on max values
-                final workoutDetails =
-                    'Squat: ${maxSquat}kg\nBench Press: ${maxBenchPress}kg\nDeadlift: ${maxDeadlift}kg\n${weeks[index]}';
-
-                return ListTile(
-                  title: Text(workoutDetails),
-                );
-              },
-            ),
-          ],
-        ),
       ),
     );
   }

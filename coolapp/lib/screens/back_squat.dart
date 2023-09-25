@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class PowerliftingDetails extends StatelessWidget {
+class BackSquatDetails extends StatelessWidget {
   final List<String> weeks;
   final int maxSquat;
   final int maxBenchPress;
   final int maxDeadlift;
 
-  PowerliftingDetails({
+  BackSquatDetails({
     required this.weeks,
     required this.maxSquat,
     required this.maxBenchPress,
@@ -17,7 +17,7 @@ class PowerliftingDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Powerlifting Weeks'),
+        title: Text('Back Squat Weeks'),
       ),
       body: SingleChildScrollView(
         child: Column(
